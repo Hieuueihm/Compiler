@@ -1,0 +1,5 @@
+if a > b then a = b else a = 1;
+
+if a>b then a=b else a=1;
+
+if a1 > 2 then 1a5= 0 else a3 = a2;

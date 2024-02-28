@@ -1,0 +1,44 @@
+<IF, >
+Invalid Identifier <ID, a>
+<ROP, > >
+Invalid Identifier <ID, b>
+<THEN, >
+Invalid Identifier <ID, a>
+<ASS, >
+Invalid Identifier <ID, b>
+<ELSE, >
+Invalid Identifier <ID, a>
+<ASS, >
+<NUM, 1>
+<SEM, >
+END TEST CASE 0 
+
+<IF, >
+Invalid Identifier <ID, a>
+<ROP, > >
+<THEN, >
+Invalid Identifier <ID, a>
+<ASS, >
+Invalid Identifier <ID, b>
+<ELSE, >
+Invalid Identifier <ID, a>
+<ASS, >
+<NUM, 1>
+<SEM, >
+END TEST CASE 1 
+
+<IF, >
+<ID, a1>
+<ROP, > >
+<NUM, 2>
+<THEN, >
+Invalid Identifier <ID, 1a5>
+<ASS, >
+<NUM, 0>
+<ELSE, >
+<ID, a3>
+<ASS, >
+<ID, a2>
+<SEM, >
+END TEST CASE 2 
+
