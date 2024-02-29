@@ -4,7 +4,7 @@ Lexical analysis (or scanning) is the process by which the stream of characters 
 - Nguyễn Minh Hiếu - 21020908
 - Nguyễn Việt Đức - 21020904
 - Nguyễn Hữu Việt Hưng - 21020442
-# Describe Scanner
+# Scanner
 Token pattern: `<Token Name , Attribute Value>`
 
 Token includes: 
