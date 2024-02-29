@@ -9,7 +9,7 @@ Token pattern: `<Token Name , Attribute Value>`
 
 Token includes: 
 - Keyword: `IF`, `THEN`, `ELSE`
-- Identifier: `Letter.Digit.(Letter|Digit)^*`
+- Identifier: `Letter.Digit.(Letter|Digit)*`
 - Number
 - Relational Operator: `>`
 - Assignment Operator
