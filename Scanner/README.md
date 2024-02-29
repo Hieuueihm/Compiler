@@ -11,8 +11,7 @@ Token includes:
 - Semi-colon
 
 # Transition Diagram
-<img src="![image](https://github.com/Hieuueihm/Compiler/assets/95173069/892ac0d0-28b7-48fe-a736-102bf9788ba4)" alt="..." width="250" />
-
+<img src="https://github.com/Hieuueihm/Compiler/assets/95173069/892ac0d0-28b7-48fe-a736-102bf9788ba4" />
 
 # Get Source Code
 ```
