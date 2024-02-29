@@ -2,7 +2,7 @@
 Lexical analysis (or scanning) is the process by which the stream of characters is grouped into strings representing the words of a language (called lexemes) which correspond to specific grammatical elements of that language (called tokens). We implement a scanner by using C language.
 # Authors
 - Nguyễn Minh Hiếu - 21020908
-- Nguyễn Việt Đức - 21020908
+- Nguyễn Việt Đức - 21020904
 - Nguyễn Hữu Việt Hưng - 21020442
 # Describe Scanner
 Token pattern: `<Token Name , Attribute Value>`
