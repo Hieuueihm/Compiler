@@ -3,7 +3,7 @@
 - Nguyễn Việt Đức - 21020908
 - Nguyễn Hữu Việt Hưng - 21020442
 # Describe Scanner
-Token format: `< Token Name , Attribute Value >`
+Token format: `<Token Name , Attribute Value>`
 Token includes: 
 - Keyword: `IF`, `THEN`, `ELSE`
 - Number
