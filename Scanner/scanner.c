@@ -151,8 +151,8 @@ int main(){
 			case 8:
 				state = 0;
 				fprintf(f2, "<SEM, >\n");
-				fprintf(f2, "END TEST CASE %d \n\n", test_case);
 				test_case++;
+				fprintf(f2, "END TEST CASE %d \n\n", test_case);
 				break;
 			case 9:
 				state = 0;

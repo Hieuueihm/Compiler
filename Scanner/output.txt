@@ -11,28 +11,14 @@ Invalid Identifier <ID, a>
 <ASS, >
 <NUM, 1>
 <SEM, >
-END TEST CASE 0 
-
-<IF, >
-Invalid Identifier <ID, a>
-<ROP, > >
-<THEN, >
-Invalid Identifier <ID, a>
-<ASS, >
-Invalid Identifier <ID, b>
-<ELSE, >
-Invalid Identifier <ID, a>
-<ASS, >
-<NUM, 1>
-<SEM, >
 END TEST CASE 1 
-
+	
 <IF, >
 <ID, a1>
 <ROP, > >
 <NUM, 2>
 <THEN, >
-Invalid Identifier <ID, 1a5>
+<ID, a5>
 <ASS, >
 <NUM, 0>
 <ELSE, >
@@ -41,4 +27,19 @@ Invalid Identifier <ID, 1a5>
 <ID, a2>
 <SEM, >
 END TEST CASE 2 
+
+<IF, >
+<NUM, 3>
+<ROP, > >
+<NUM, 2>
+<THEN, >
+<NUM, 15>
+Invalid Ass
+<NUM, 0>
+<ELSE, >
+Invalid Identifier <ID, aa3>
+<ASS, >
+<ID, a2>
+<SEM, >
+END TEST CASE 3 
 
