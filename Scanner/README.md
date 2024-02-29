@@ -17,7 +17,7 @@ Token includes:
 # Get Source Code
 ```
 git clone https://github.com/Hieuueihm/Compiler
-cd Scanner
+cd Compiler/Scanner
 gcc -o des scanner.c
 ```
 # Results
