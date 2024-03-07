@@ -730,7 +730,9 @@ class Scanner {
           case 18: break;
           case 6:
             { if (hasPreNumber == 1) {
-    System.out.println("<Invalid Ass>");
+    System.out.print("Error: <Invalid Ass>");
+    System.out.println(" at line " + yyline + ", column " + yycolumn);
+
 } else {
     System.out.println("<ASS, >");
 }
@@ -744,7 +746,7 @@ return 0;
           // fall through
           case 20: break;
           case 8:
-            { System.out.println("<Invalid identifier, " + yytext() + ">"); hasPreNumber = 0; return 0;
+            { System.out.println("Error: <Invalid identifier, " + yytext() + "> at line " + yyline + ", column " + yycolumn); hasPreNumber = 0; return 0;
             }
           // fall through
           case 21: break;

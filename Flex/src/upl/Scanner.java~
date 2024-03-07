@@ -730,7 +730,9 @@ class Scanner {
           case 18: break;
           case 6:
             { if (hasPreNumber == 1) {
-    System.out.println("<Invalid Ass>");
+    System.out.print("Error: <Invalid Ass>");
+    System.out.println(" at line " + yyline + ", column " + yycolumn);
+
 } else {
     System.out.println("<ASS, >");
 }
