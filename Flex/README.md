@@ -4,11 +4,13 @@
 - Nguyễn Hữu Việt Hưng - 21020442
 # Scanner
 Token includes: 
-- Keyword: IF, THEN, ELSE
+- Keyword: `IF`, `THEN`, `ELSE`
+- Identifier: `Letter.Digit.(Letter|Digit)*`
 - Number
-- Relational Operator: >, >=
+- Relational Operator: `>`, `>=`
 - Assignment Operator
 - Semi-colon
+
 
 # Get Source Code
 ```
