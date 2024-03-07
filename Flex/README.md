@@ -6,19 +6,15 @@
 Token includes: 
 - Keyword: IF, THEN, ELSE
 - Number
-- Relational Operator: >
+- Relational Operator: >, >=
 - Assignment Operator
 - Semi-colon
-
-# Transition Diagram
-
-
 
 # Get Source Code
 ```
 git clone https://github.com/Hieuueihm/Compiler
-cd Compiler/Scanner
-gcc -o des scanner.c
+cd Compiler/Flex
+ant run
 ```
 # Results
 | Test Case     	| Input         									|	Token    				|
