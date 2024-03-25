@@ -1,0 +1,63 @@
+<NUM, 4> 
+<PLUS, >
+<NUM, 4> 
+<SEM, >
+
+<IF, >
+Error: <Invalid identifier, a> at line 2, column 4
+<ROP, > >
+Error: <Invalid identifier, b> at line 2, column 8
+<THEN, >
+Error: <Invalid identifier, a> at line 2, column 15
+<ASS, >
+Error: <Invalid identifier, b> at line 2, column 19
+<ELSE, >
+Error: <Invalid identifier, a> at line 2, column 26
+<ASS, >
+<NUM, 1> 
+<SEM, >
+
+<IF, >
+<IDEN, a1> 
+<ROP, > >
+<NUM, 2> 
+<THEN, >
+<IDEN, a5> 
+<ASS, >
+<NUM, 0> 
+<ELSE, >
+<IDEN, a3> 
+<ASS, >
+<IDEN, a2> 
+<SEM, >
+
+<IF, >
+<NUM, 3> 
+<ROP, > >
+<NUM, 2> 
+<THEN, >
+<IDEN, a2a3> 
+<ASS, >
+<NUM, 0> 
+<ELSE, >
+Error: <Invalid identifier, aa3> at line 6, column 29
+<ASS, >
+<IDEN, a2> 
+<SEM, >
+
+<IF, >
+<NUM, 3> 
+<ROP, >= >
+<NUM, 2> 
+<THEN, >
+<NUM, 22> 
+Error: <Invalid Ass> at line 8, column 19
+<NUM, 0> 
+<ELSE, >
+Error: <Invalid identifier, aa3> at line 8, column 28
+<ASS, >
+<IDEN, a2> 
+<SEM, >
+
+<ILL, $>
+EOF

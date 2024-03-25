@@ -7,6 +7,11 @@
   <property name="lib"     location="lib"     />
   <property name="tools"   location="tools"     />
 
+
+    
+  <property name="outputFile" value="output.txt" />
+  <property name="inputFile" value="input.upl" />
+
   <target name="init">
     <mkdir dir="${classes}"/>
     <mkdir dir="${dist}"/>
@@ -44,7 +49,9 @@
   <!-- Test the parser in a single run -->
   <target name="run" depends="jar">
     <java jar="${dist}/Compiler.jar" fork="true">
-      <arg value="input.upl" />
+      <arg value="${inputFile}" />
+      <redirector output="${outputFile}" />
+
     </java>
   </target>
 

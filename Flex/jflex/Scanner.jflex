@@ -9,6 +9,11 @@ package upl;
 %class Scanner
 %{
     int hasPreNumber = 0;
+    public static String incrementString(int number) {
+        number += 1; // Tăng giá trị lên 1
+        return String.valueOf(number); // Chuyển số nguyên trở lại thành chuỗi
+    }
+
 	
 %}
 
@@ -32,14 +37,14 @@ errIden = {letter}{letter}+[{letter}|{digit}]* | {digit}+{letter}+[{letter} | {d
 ">" { System.out.println("<ROP, > >"); return 0;}
 "=" { if (hasPreNumber == 1) {
     System.out.print("Error: <Invalid Ass>");
-    System.out.println(" at line " + yyline + ", column " + yycolumn);
+    System.out.println(" at line " + incrementString(yyline) + ", column " + incrementString(yycolumn));
 
 } else {
     System.out.println("<ASS, >");
 }
 return 0;}
 ";" { System.out.println("<SEM, >\n" ); hasPreNumber = 0; return 0; }
-{errIden} {System.out.println("Error: <Invalid identifier, " + yytext() + "> at line " + yyline + ", column " + yycolumn); hasPreNumber = 0; return 0;}
+{errIden} {System.out.println("Error: <Invalid identifier, " + yytext() + "> at line " + incrementString(yyline) + ", column " + incrementString(yycolumn)); hasPreNumber = 0; return 0;}
 {identifier} { System.out.println("<IDEN, "+ yytext() + "> "); hasPreNumber = 0; return 0;}
 {number} { System.out.println("<NUM, "  + yytext() + "> "); hasPreNumber = 1; return 0;}
 [ \t\r\n\f] { /* ignore white space. */ }
