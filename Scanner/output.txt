@@ -18,7 +18,7 @@ END TEST CASE 1
 <ROP, > >
 <NUM, 2>
 <THEN, >
-<ID, a5>
+<ID, a555a5>
 <ASS, >
 <NUM, 0>
 <ELSE, >

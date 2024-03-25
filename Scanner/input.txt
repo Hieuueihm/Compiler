@@ -1,6 +1,6 @@
 if a > b then a = b else a = 1;
 
-if a1 > 2 then a5= 0 else a3 = a2;
+if a1 > 2 then a555a5= 0 else a3 = a2;
 
 if 3 > 2 then a2 = 0 else aa3=a2;
 

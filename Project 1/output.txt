@@ -1,0 +1,112 @@
+<BEGIN>
+<INT>
+<ID, x>
+<SEMICOLON>
+<INT>
+Error: <Invalid identifier, 3a> at line 3, column 9
+<EQUAL>
+<ID, x>
+<PLUS>
+<NUMBER, 1>
+<SEMICOLON>
+<MULTIPLE LINE COMMENT, /*>
+<MULTIPLE LINE COMMENT, 	
+    comments
+	cho nhi?u dòng
+	>
+<MULTIPLE LINE COMMENT, */>
+<BOOL>
+<ID, a>
+<SEMICOLON>
+<SINGLE LINE COMMENT, //>
+<SINGLE LINE COMMENT, comment cho m?t dòng>
+<IF>
+<ID, x>
+<GT>
+<ID, a>
+<THEN>
+<LBRACE>
+<INT>
+<ID, c>
+<EQUAL>
+<NUMBER, 1>
+<SEMICOLON>
+<RBRACE>
+<ELSE>
+<LBRACE>
+<ID, y>
+<EQUAL>
+<ID, x>
+<SEMICOLON>
+<ID, x>
+<EQUAL>
+<ID, x>
+<PLUS>
+<NUMBER, 1>
+<SEMICOLON>
+<RBRACE>
+<PRINT>
+<LPAREN>
+<ID, a>
+<RPAREN>
+<SEMICOLON>
+<IF>
+<ID, x>
+<GTE>
+<ID, a>
+<THEN>
+<LBRACE>
+<ID, x>
+<EQUAL>
+<ID, x>
+<PLUS>
+<NUMBER, 1>
+<SEMICOLON>
+<RBRACE>
+<BOOL>
+<ID, x>
+<EQUAL>
+<ID, a>
+<DOUBLEEQ>
+<ID, b>
+<SEMICOLON>
+<DO>
+<LBRACE>
+<INT>
+<ID, b>
+<EQUAL>
+Error: <Invalid identifier, 123x> at line 22, column 9
+<SEMICOLON>
+<ID, b>
+<EQUAL>
+<ID, b>
+<MULT>
+<NUMBER, 10>
+<SEMICOLON>
+<ID, a>
+<EQUAL>
+<LPAREN>
+<ID, b>
+<PLUS>
+<NUMBER, 10>
+<RPAREN>
+<MULT>
+<ID, b>
+<SEMICOLON>
+<RBRACE>
+<WHILE>
+<LPAREN>
+<ID, a>
+<GT>
+<NUMBER, 1>
+<RPAREN>
+<SEMICOLON>
+<PRINT>
+<LPAREN>
+<ID, a>
+<PLUS>
+<NUMBER, 1>
+<RPAREN>
+<SEMICOLON>
+<END>
+EOF
