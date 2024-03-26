@@ -56,7 +56,7 @@ char *toUpper(char buff[])
 int main()
 {
     FILE *f1, *f2;
-    f1 = fopen("input.txt", "r");
+    f1 = fopen("input.upl", "r");
     f2 = fopen("output.txt", "w");
     char c;
     int state = 0;

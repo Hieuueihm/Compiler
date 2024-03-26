@@ -72,7 +72,7 @@ ERROR: Invalid Identifier 3a line 3 column 9
 <INT, >
 <ID, b>
 <ASSIGN, >
-ERROR: Invalid Identifier 123x line 23 column 9
+ERROR: Invalid Identifier 123x line 23 column 11
 <SEMICOLON, >
 <ID, b>
 <ASSIGN, >

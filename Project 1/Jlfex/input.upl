@@ -19,7 +19,7 @@ begin
     }
 	bool x=a==b;
 	do{
-		int b=123x;
+				int b=123x;
 		b=b*10;
 		a=(b+10)*b;
 	}while(a>1);
