@@ -10,6 +10,7 @@ Token includes:
 - Relational Operator: `>`, `>=`
 - Assignment Operator
 - Semi-colon
+We further handle the case when number = number
 
 
 # Get Source Code
