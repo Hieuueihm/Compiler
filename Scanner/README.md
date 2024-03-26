@@ -16,13 +16,14 @@ Token includes:
 - Semi-colon
 
 # Transition Diagram
-<img src="https://github.com/Hieuueihm/Compiler/assets/95173069/892ac0d0-28b7-48fe-a736-102bf9788ba4" />
+<img src="https://github.com/Hieuueihm/Compiler/assets/95173069/832637a6-de4b-4d49-80aa-fbbd8371a7c4" />
 
 # Get Source Code
 ```
 git clone https://github.com/Hieuueihm/Compiler
 cd Compiler/Scanner
 gcc -o des scanner.c
+des
 ```
 # Results
 | Test Case     	| Input         									|	Token    				|
