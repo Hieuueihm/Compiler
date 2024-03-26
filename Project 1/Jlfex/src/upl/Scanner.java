@@ -342,15 +342,13 @@ class Scanner {
     private final int RPAREN = 20;
     private final int LBRACE = 21;
     private final int RBRACE = 22;
-    private final int DOUBLEQ = 23;
-    private final int SEMICOLON = 24;
-    private final int SINGLE_LINE_COMMENT = 25;
-    private final int MULTIPLE_LINE_COMMENT = 26;
+    private final int SEMICOLON = 23;
+    private final int COMMENT = 24;
 	private final String[] tokenNames = {
         "ERROR",
         "BEGIN", "END", "INT", "BOOL", "IF", "THEN", "ELSE", "DO", "WHILE", "PRINT",
         "ID", "NUMBER", "ASSIGN", "GTE", "GT", "EQUAL", "PLUS", "MULT", "LPAREN",
-        "RPAREN", "LBRACE", "RBRACE", "DOUBLEEQ", "SEMICOLON", "SINGLE LINE COMMENT", "MULTIPLE LINE COMMENT"
+        "RPAREN", "LBRACE", "RBRACE", "SEMICOLON", "COMMENT"
     };
     private String Token(int token){
         if (token >= 0 && token <  tokenNames.length) {
@@ -827,7 +825,7 @@ class Scanner {
           // fall through
           case 39: break;
           case 9:
-            { System.out.println(Token(EQUAL)); return 0;
+            { System.out.println(Token(ASSIGN)); return 0;
             }
           // fall through
           case 40: break;
@@ -852,22 +850,22 @@ class Scanner {
           // fall through
           case 44: break;
           case 14:
-            { System.out.println(Token(MULTIPLE_LINE_COMMENT, yytext())); return 0;
+            { System.out.println(Token(COMMENT, yytext())); return 0;
             }
           // fall through
           case 45: break;
           case 15:
-            { yybegin(YYINITIAL); System.out.println(Token(SINGLE_LINE_COMMENT, yytext())); return 0;
+            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, yytext())); return 0;
             }
           // fall through
           case 46: break;
           case 16:
-            { yybegin(MULTILINE_COMMENT); System.out.println(Token(MULTIPLE_LINE_COMMENT, yytext())); return 0;
+            { yybegin(MULTILINE_COMMENT); return 0;
             }
           // fall through
           case 47: break;
           case 17:
-            { yybegin(SINGLELINE_COMMENT); System.out.println(Token(SINGLE_LINE_COMMENT, yytext())); return 0;
+            { yybegin(SINGLELINE_COMMENT); return 0;
             }
           // fall through
           case 48: break;
@@ -877,7 +875,7 @@ class Scanner {
           // fall through
           case 49: break;
           case 19:
-            { System.out.println(Token(DOUBLEQ)); return 0;
+            { System.out.println(Token(EQUAL)); return 0;
             }
           // fall through
           case 50: break;
@@ -897,7 +895,7 @@ class Scanner {
           // fall through
           case 53: break;
           case 23:
-            { yybegin(YYINITIAL); System.out.println(Token(MULTIPLE_LINE_COMMENT, yytext())); return 0;
+            { yybegin(YYINITIAL); return 0;
             }
           // fall through
           case 54: break;

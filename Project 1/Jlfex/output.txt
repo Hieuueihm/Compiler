@@ -4,22 +4,19 @@
 <SEMICOLON>
 <INT>
 Error: <Invalid identifier, 3a> at line 3, column 9
-<EQUAL>
+<ASSIGN>
 <ID, x>
 <PLUS>
 <NUMBER, 1>
 <SEMICOLON>
-<MULTIPLE LINE COMMENT, /*>
-<MULTIPLE LINE COMMENT, 	
+<COMMENT, 	
     comments
 	cho nhi?u dòng
 	>
-<MULTIPLE LINE COMMENT, */>
 <BOOL>
 <ID, a>
 <SEMICOLON>
-<SINGLE LINE COMMENT, //>
-<SINGLE LINE COMMENT, comment cho m?t dòng>
+<COMMENT, comment cho m?t dòng>
 <IF>
 <ID, x>
 <GT>
@@ -28,18 +25,18 @@ Error: <Invalid identifier, 3a> at line 3, column 9
 <LBRACE>
 <INT>
 <ID, c>
-<EQUAL>
+<ASSIGN>
 <NUMBER, 1>
 <SEMICOLON>
 <RBRACE>
 <ELSE>
 <LBRACE>
 <ID, y>
-<EQUAL>
+<ASSIGN>
 <ID, x>
 <SEMICOLON>
 <ID, x>
-<EQUAL>
+<ASSIGN>
 <ID, x>
 <PLUS>
 <NUMBER, 1>
@@ -57,7 +54,7 @@ Error: <Invalid identifier, 3a> at line 3, column 9
 <THEN>
 <LBRACE>
 <ID, x>
-<EQUAL>
+<ASSIGN>
 <ID, x>
 <PLUS>
 <NUMBER, 1>
@@ -65,26 +62,26 @@ Error: <Invalid identifier, 3a> at line 3, column 9
 <RBRACE>
 <BOOL>
 <ID, x>
-<EQUAL>
+<ASSIGN>
 <ID, a>
-<DOUBLEEQ>
+<EQUAL>
 <ID, b>
 <SEMICOLON>
 <DO>
 <LBRACE>
 <INT>
 <ID, b>
-<EQUAL>
+<ASSIGN>
 Error: <Invalid identifier, 123x> at line 22, column 9
 <SEMICOLON>
 <ID, b>
-<EQUAL>
+<ASSIGN>
 <ID, b>
 <MULT>
 <NUMBER, 10>
 <SEMICOLON>
 <ID, a>
-<EQUAL>
+<ASSIGN>
 <LPAREN>
 <ID, b>
 <PLUS>
