@@ -14,9 +14,7 @@ typedef struct
     int ID;
     int NUM;
     int ASSIGN;
-    int GTE;
-    int GT;
-    int EQUAL;
+    int ROP;
     int PLUS;
     int MULT;
     int LPAREN;
@@ -25,6 +23,7 @@ typedef struct
     int RBRACE;
     int SEMICOLON;
     int COMMENT;
+    int BOOLEAN;
 } Sym;
 char *SymNames[] = {
     "ERROR",
@@ -38,12 +37,10 @@ char *SymNames[] = {
     "DO",
     "WHILE",
     "PRINT",
-    "ID",
-    "NUM",
+    "IDENTIFIER",
+    "NUMBER",
     "ASSIGN",
-    "GTE",
-    "GT",
-    "EQUAL",
+    "ROP",
     "PLUS",
     "MULT",
     "LPAREN",
@@ -51,7 +48,8 @@ char *SymNames[] = {
     "LBRACE",
     "RBRACE",
     "SEMICOLON",
-    "COMMENT"};
+    "COMMENT",
+    "BOOLEAN"};
 char *Keywords[] = {"begin", "end", "int", "bool", "if", "then", "else", "do", "while", "print"};
 Sym sym = {
     .ERROR = 0,
@@ -68,14 +66,13 @@ Sym sym = {
     .ID = 11,
     .NUM = 12,
     .ASSIGN = 13,
-    .GTE = 14,
-    .GT = 15,
-    .EQUAL = 16,
-    .PLUS = 17,
-    .MULT = 18,
-    .LPAREN = 19,
-    .RPAREN = 20,
-    .LBRACE = 21,
-    .RBRACE = 22,
-    .SEMICOLON = 23,
-    .COMMENT = 24};
+    .ROP = 14,
+    .PLUS = 15,
+    .MULT = 16,
+    .LPAREN = 17,
+    .RPAREN = 18,
+    .LBRACE = 19,
+    .RBRACE = 20,
+    .SEMICOLON = 21,
+    .COMMENT = 22,
+    .BOOLEAN = 23};

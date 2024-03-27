@@ -6,5 +6,5 @@ if a1 > 2 then a5= 0 else a3 = a2;
 if 3 > 2 then a2a3 = 0 else aa3=a2;
 
 if 3 >= 2 then 22 = 0 else aa3=a2;
-
+s
 $

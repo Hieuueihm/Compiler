@@ -59,5 +59,6 @@ Error: <Invalid identifier, aa3> at line 8, column 28
 <IDEN, a2> 
 <SEM, >
 
+Error: <Invalid identifier, s> at line 9, column 1
 <ILL, $>
 EOF

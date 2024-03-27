@@ -1,6 +1,6 @@
 begin
-    int x;
-    int 3a = x+1;
+	int x;
+    int 33a = x+1;
 	/*	
     comments
 	cho nhiều dòng
@@ -17,11 +17,12 @@ begin
 	if x>=a then{
 	x=x+1;
     }
-	bool x=a==b;
+	bool x=false;
 	do{
 				int b=123x;
 		b=b*10;
 		a=(b+10)*b;
 	}while(a>1);
 	print(a+1);
+		/casdddd
 end

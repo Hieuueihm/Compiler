@@ -19,4 +19,6 @@ int main()
             break;
         }
     } while (3 >= 2);
-}
+};
+/***scacsac
+ ấccsacsa**/

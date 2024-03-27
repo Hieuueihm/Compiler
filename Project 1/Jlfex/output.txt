@@ -1,109 +1,107 @@
-<BEGIN>
-<INT>
-<ID, x>
-<SEMICOLON>
-<INT>
-Error: <Invalid identifier, 3a> at line 3, column 9
-<ASSIGN>
-<ID, x>
-<PLUS>
+<BEGIN, >
+<INT, >
+<IDENTIFIER, x>
+<SEMICOLON, >
+<INT, >
+<Error, Invalid identifier - 33a> at line 3, column 9
+<ASSIGN, >
+<IDENTIFIER, x>
+<PLUS, >
 <NUMBER, 1>
-<SEMICOLON>
+<SEMICOLON, >
 <COMMENT, 	
     comments
 	cho nhi?u dòng
 	>
-<BOOL>
-<ID, a>
-<SEMICOLON>
+<BOOL, >
+<IDENTIFIER, a>
+<SEMICOLON, >
 <COMMENT, comment cho m?t dòng>
-<IF>
-<ID, x>
-<GT>
-<ID, a>
-<THEN>
-<LBRACE>
-<INT>
-<ID, c>
-<ASSIGN>
+<IF, >
+<IDENTIFIER, x>
+<ROP, >>
+<IDENTIFIER, a>
+<THEN, >
+<LBRACE, >
+<INT, >
+<IDENTIFIER, c>
+<ASSIGN, >
 <NUMBER, 1>
-<SEMICOLON>
-<RBRACE>
-<ELSE>
-<LBRACE>
-<ID, y>
-<ASSIGN>
-<ID, x>
-<SEMICOLON>
-<ID, x>
-<ASSIGN>
-<ID, x>
-<PLUS>
+<SEMICOLON, >
+<RBRACE, >
+<ELSE, >
+<LBRACE, >
+<IDENTIFIER, y>
+<ASSIGN, >
+<IDENTIFIER, x>
+<SEMICOLON, >
+<IDENTIFIER, x>
+<ASSIGN, >
+<IDENTIFIER, x>
+<PLUS, >
 <NUMBER, 1>
-<SEMICOLON>
-<RBRACE>
-<PRINT>
-<LPAREN>
-<ID, a>
-<RPAREN>
-<SEMICOLON>
-<IF>
-<ID, x>
-<GTE>
-<ID, a>
-<THEN>
-<LBRACE>
-<ID, x>
-<ASSIGN>
-<ID, x>
-<PLUS>
+<SEMICOLON, >
+<RBRACE, >
+<PRINT, >
+<LPAREN, >
+<IDENTIFIER, a>
+<RPAREN, >
+<SEMICOLON, >
+<IF, >
+<IDENTIFIER, x>
+<ROP, >=>
+<IDENTIFIER, a>
+<THEN, >
+<LBRACE, >
+<IDENTIFIER, x>
+<ASSIGN, >
+<IDENTIFIER, x>
+<PLUS, >
 <NUMBER, 1>
-<SEMICOLON>
-<RBRACE>
-<BOOL>
-<ID, x>
-<ASSIGN>
-<ID, a>
-<EQUAL>
-<ID, b>
-<SEMICOLON>
-<DO>
-<LBRACE>
-<INT>
-<ID, b>
-<ASSIGN>
-Error: <Invalid identifier, 123x> at line 22, column 11
-<SEMICOLON>
-<ID, b>
-<ASSIGN>
-<ID, b>
-<MULT>
+<SEMICOLON, >
+<RBRACE, >
+<BOOL, >
+<IDENTIFIER, x>
+<ASSIGN, >
+<BOOLEAN, false>
+<SEMICOLON, >
+<DO, >
+<LBRACE, >
+<INT, >
+<IDENTIFIER, b>
+<ASSIGN, >
+<Error, Invalid identifier - 123x> at line 22, column 11
+<SEMICOLON, >
+<IDENTIFIER, b>
+<ASSIGN, >
+<IDENTIFIER, b>
+<MULT, >
 <NUMBER, 10>
-<SEMICOLON>
-<ID, a>
-<ASSIGN>
-<LPAREN>
-<ID, b>
-<PLUS>
+<SEMICOLON, >
+<IDENTIFIER, a>
+<ASSIGN, >
+<LPAREN, >
+<IDENTIFIER, b>
+<PLUS, >
 <NUMBER, 10>
-<RPAREN>
-<MULT>
-<ID, b>
-<SEMICOLON>
-<RBRACE>
-<WHILE>
-<LPAREN>
-<ID, a>
-<GT>
+<RPAREN, >
+<MULT, >
+<IDENTIFIER, b>
+<SEMICOLON, >
+<RBRACE, >
+<WHILE, >
+<LPAREN, >
+<IDENTIFIER, a>
+<ROP, >>
 <NUMBER, 1>
-<RPAREN>
-<SEMICOLON>
-<PRINT>
-<LPAREN>
-<ID, a>
-<PLUS>
+<RPAREN, >
+<SEMICOLON, >
+<PRINT, >
+<LPAREN, >
+<IDENTIFIER, a>
+<PLUS, >
 <NUMBER, 1>
-<RPAREN>
-<SEMICOLON>
-<END>
-EOF
+<RPAREN, >
+<SEMICOLON, >
+<ERROR, INVALID CHARACTER - /casdddd>at line 27 column 3
+<END, >

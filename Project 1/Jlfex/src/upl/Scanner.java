@@ -16,8 +16,11 @@ class Scanner {
 
   // Lexical states.
   public static final int YYINITIAL = 0;
-  public static final int MULTILINE_COMMENT = 2;
-  public static final int SINGLELINE_COMMENT = 4;
+  public static final int START_COMMENT = 2;
+  public static final int IN_SG_LINE_COMMENT = 4;
+  public static final int IN_ERROR = 6;
+  public static final int IN_MT_LINE_COMMENT = 8;
+  public static final int PRE_FINISH_MUL_LINE_COMMENT = 10;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -26,7 +29,7 @@ class Scanner {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0,  0,  1,  1,  2, 2
+     0,  0,  1,  1,  2,  2,  3,  3,  4,  4,  5, 5
   };
 
   /**
@@ -63,13 +66,13 @@ class Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\1\3\2\1\22\0\1\1\7\0"+
-    "\1\4\1\5\1\6\1\7\3\0\1\10\12\11\1\0"+
-    "\1\12\1\0\1\13\1\14\2\0\32\15\6\0\1\15"+
-    "\1\16\1\15\1\17\1\20\1\21\1\22\1\23\1\24"+
-    "\2\15\1\25\1\15\1\26\1\27\1\30\1\15\1\31"+
-    "\1\32\1\33\2\15\1\34\3\15\1\35\1\0\1\36"+
-    "\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
+    "\11\0\1\1\1\2\1\3\2\4\22\0\1\1\7\0"+
+    "\1\5\1\6\1\7\1\10\3\0\1\11\12\12\1\0"+
+    "\1\13\1\0\1\14\1\15\2\0\32\16\6\0\1\17"+
+    "\1\20\1\16\1\21\1\22\1\23\1\24\1\25\1\26"+
+    "\2\16\1\27\1\16\1\30\1\31\1\32\1\16\1\33"+
+    "\1\34\1\35\1\36\1\16\1\37\3\16\1\40\1\0"+
+    "\1\41\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -96,15 +99,15 @@ class Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\3\0\1\1\1\2\1\3\1\4\1\5\1\6\1\1"+
-    "\1\7\1\10\1\11\1\12\10\13\1\14\1\15\1\16"+
-    "\1\5\2\17\1\20\1\21\1\22\1\23\1\24\3\13"+
-    "\1\25\2\13\1\26\4\13\1\27\1\21\3\13\1\30"+
-    "\1\31\4\13\1\32\1\33\1\13\1\34\1\13\1\35"+
-    "\1\36\1\37";
+    "\6\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
+    "\1\10\1\11\1\12\1\13\11\14\1\15\1\16\1\17"+
+    "\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
+    "\1\30\1\31\1\32\1\13\3\14\1\33\3\14\1\34"+
+    "\10\14\1\35\1\14\1\36\5\14\1\37\1\40\1\14"+
+    "\1\41\1\42\1\14\1\43\1\44\1\45";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[63];
+    int [] result = new int[74];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -129,17 +132,19 @@ class Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\37\0\76\0\135\0\135\0\135\0\135\0\135"+
-    "\0\135\0\174\0\233\0\135\0\272\0\331\0\370\0\u0117"+
-    "\0\u0136\0\u0155\0\u0174\0\u0193\0\u01b2\0\u01d1\0\135\0\135"+
-    "\0\u01f0\0\u020f\0\u022e\0\u024d\0\135\0\135\0\u026c\0\135"+
-    "\0\135\0\u028b\0\u02aa\0\u02c9\0\370\0\u02e8\0\u0307\0\370"+
-    "\0\u0326\0\u0345\0\u0364\0\u0383\0\135\0\u022e\0\u03a2\0\u03c1"+
-    "\0\u03e0\0\370\0\370\0\u03ff\0\u041e\0\u043d\0\u045c\0\370"+
-    "\0\370\0\u047b\0\370\0\u049a\0\370\0\370\0\370";
+    "\0\0\0\42\0\104\0\146\0\210\0\252\0\314\0\314"+
+    "\0\314\0\314\0\314\0\314\0\314\0\356\0\314\0\u0110"+
+    "\0\u0110\0\u0132\0\u0154\0\u0176\0\u0198\0\u01ba\0\u01dc\0\u01fe"+
+    "\0\u0220\0\u0242\0\314\0\314\0\314\0\314\0\314\0\314"+
+    "\0\314\0\314\0\314\0\314\0\314\0\314\0\314\0\u0264"+
+    "\0\314\0\u0286\0\u02a8\0\u02ca\0\u0132\0\u02ec\0\u030e\0\u0330"+
+    "\0\u0132\0\u0352\0\u0374\0\u0396\0\u03b8\0\u03da\0\u03fc\0\u041e"+
+    "\0\u0440\0\u0132\0\u0462\0\u0132\0\u0484\0\u04a6\0\u04c8\0\u04ea"+
+    "\0\u050c\0\u0132\0\u0132\0\u052e\0\u0132\0\u0132\0\u0550\0\u0132"+
+    "\0\u0132\0\u0132";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[63];
+    int [] result = new int[74];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -162,38 +167,42 @@ class Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\4\2\5\1\0\1\6\1\7\1\10\1\11\1\12"+
-    "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22"+
-    "\3\17\1\23\3\17\1\24\2\17\1\25\1\26\1\27"+
-    "\1\30\6\31\1\32\1\31\1\12\26\31\2\33\1\5"+
-    "\5\33\1\34\26\33\45\0\1\35\1\0\1\36\37\0"+
-    "\1\13\3\0\20\37\15\0\1\40\36\0\1\41\34\0"+
-    "\1\42\3\0\20\17\13\0\1\42\3\0\3\17\1\43"+
-    "\6\17\1\44\5\17\13\0\1\42\3\0\12\17\1\45"+
-    "\5\17\13\0\1\42\3\0\10\17\1\46\1\47\6\17"+
-    "\13\0\1\42\3\0\4\17\1\50\4\17\1\51\6\17"+
-    "\13\0\1\42\3\0\14\17\1\52\3\17\13\0\1\42"+
-    "\3\0\6\17\1\53\11\17\13\0\1\42\3\0\6\17"+
-    "\1\54\11\17\2\0\6\31\1\0\1\31\1\0\26\31"+
-    "\10\0\1\55\26\0\2\33\1\0\36\33\1\0\5\33"+
-    "\1\56\26\33\11\0\1\37\3\0\20\37\13\0\1\42"+
-    "\3\0\20\37\13\0\1\42\3\0\5\17\1\57\12\17"+
-    "\13\0\1\42\3\0\12\17\1\60\5\17\13\0\1\42"+
-    "\3\0\15\17\1\61\2\17\13\0\1\42\3\0\2\17"+
-    "\1\62\15\17\13\0\1\42\3\0\16\17\1\63\1\17"+
-    "\13\0\1\42\3\0\7\17\1\64\10\17\13\0\1\42"+
-    "\3\0\3\17\1\65\14\17\13\0\1\42\3\0\7\17"+
-    "\1\66\10\17\13\0\1\42\3\0\7\17\1\67\10\17"+
-    "\13\0\1\42\3\0\10\17\1\70\7\17\13\0\1\42"+
-    "\3\0\3\17\1\71\14\17\13\0\1\42\3\0\11\17"+
-    "\1\72\6\17\13\0\1\42\3\0\11\17\1\73\6\17"+
-    "\13\0\1\42\3\0\10\17\1\74\7\17\13\0\1\42"+
-    "\3\0\11\17\1\75\6\17\13\0\1\42\3\0\16\17"+
-    "\1\76\1\17\13\0\1\42\3\0\3\17\1\77\14\17"+
-    "\2\0";
+    "\1\7\2\10\1\0\1\10\1\11\1\12\1\13\1\14"+
+    "\1\15\1\16\1\17\1\20\1\21\2\22\1\23\1\24"+
+    "\1\25\1\26\2\22\1\27\3\22\1\30\2\22\1\31"+
+    "\1\22\1\32\1\33\1\34\2\35\1\36\1\0\1\10"+
+    "\2\35\1\37\1\35\1\40\30\35\2\41\1\42\1\0"+
+    "\1\10\37\41\1\43\1\0\1\10\37\41\1\44\1\0"+
+    "\1\10\2\41\1\45\32\41\2\46\1\44\1\0\1\10"+
+    "\4\46\1\47\30\46\54\0\1\16\3\0\22\50\16\0"+
+    "\1\51\37\0\1\52\3\0\22\22\14\0\1\52\3\0"+
+    "\4\22\1\53\6\22\1\54\6\22\14\0\1\52\3\0"+
+    "\13\22\1\55\6\22\14\0\1\52\3\0\11\22\1\56"+
+    "\1\57\7\22\14\0\1\52\3\0\1\22\1\60\20\22"+
+    "\14\0\1\52\3\0\5\22\1\61\4\22\1\62\7\22"+
+    "\14\0\1\52\3\0\15\22\1\63\4\22\14\0\1\52"+
+    "\3\0\7\22\1\64\5\22\1\65\4\22\14\0\1\52"+
+    "\3\0\7\22\1\66\12\22\14\0\1\50\3\0\22\50"+
+    "\14\0\1\52\3\0\22\50\14\0\1\52\3\0\6\22"+
+    "\1\67\13\22\14\0\1\52\3\0\13\22\1\70\6\22"+
+    "\14\0\1\52\3\0\16\22\1\71\3\22\14\0\1\52"+
+    "\3\0\3\22\1\72\16\22\14\0\1\52\3\0\11\22"+
+    "\1\73\10\22\14\0\1\52\3\0\17\22\1\74\2\22"+
+    "\14\0\1\52\3\0\10\22\1\75\11\22\14\0\1\52"+
+    "\3\0\4\22\1\76\15\22\14\0\1\52\3\0\20\22"+
+    "\1\77\1\22\14\0\1\52\3\0\10\22\1\100\11\22"+
+    "\14\0\1\52\3\0\10\22\1\101\11\22\14\0\1\52"+
+    "\3\0\11\22\1\102\10\22\14\0\1\52\3\0\4\22"+
+    "\1\103\15\22\14\0\1\52\3\0\16\22\1\77\3\22"+
+    "\14\0\1\52\3\0\12\22\1\104\7\22\14\0\1\52"+
+    "\3\0\12\22\1\105\7\22\14\0\1\52\3\0\4\22"+
+    "\1\106\15\22\14\0\1\52\3\0\11\22\1\107\10\22"+
+    "\14\0\1\52\3\0\12\22\1\110\7\22\14\0\1\52"+
+    "\3\0\17\22\1\111\2\22\14\0\1\52\3\0\4\22"+
+    "\1\112\15\22\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[1209];
+    int [] result = new int[1394];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -236,11 +245,11 @@ class Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\3\0\6\11\2\1\1\11\12\1\2\11\4\1\2\11"+
-    "\1\1\2\11\13\1\1\11\22\1";
+    "\6\0\7\11\1\1\1\11\13\1\15\11\1\1\1\11"+
+    "\41\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[63];
+    int [] result = new int[74];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -318,7 +327,8 @@ class Scanner {
 
   /* user code: */
 
-
+    private String line = "", column = "";
+    private String buffer = "";
     private final int ERROR = 0;
     private final int BEGIN = 1;
     private final int END = 2;
@@ -333,26 +343,45 @@ class Scanner {
     private final int ID = 11;
     private final int NUM = 12;
     private final int ASSIGN = 13;
-    private final int GTE = 14;
-    private final int GT = 15;
-    private final int EQUAL = 16;
-    private final int PLUS = 17;
-    private final int MULT = 18;
-    private final int LPAREN = 19;
-    private final int RPAREN = 20;
-    private final int LBRACE = 21;
-    private final int RBRACE = 22;
-    private final int SEMICOLON = 23;
-    private final int COMMENT = 24;
+    private final int ROP = 14;
+    private final int PLUS = 15;
+    private final int MULT = 16;
+    private final int LPAREN = 17;
+    private final int RPAREN = 18;
+    private final int LBRACE = 19;
+    private final int RBRACE = 20;
+    private final int SEMICOLON = 21;
+    private final int COMMENT = 22;
+    private final int BOOLEAN = 23;
 	private final String[] tokenNames = {
-        "ERROR",
-        "BEGIN", "END", "INT", "BOOL", "IF", "THEN", "ELSE", "DO", "WHILE", "PRINT",
-        "ID", "NUMBER", "ASSIGN", "GTE", "GT", "EQUAL", "PLUS", "MULT", "LPAREN",
-        "RPAREN", "LBRACE", "RBRACE", "SEMICOLON", "COMMENT"
+    "ERROR",
+    "BEGIN",
+    "END",
+    "INT",
+    "BOOL",
+    "IF",
+    "THEN",
+    "ELSE",
+    "DO",
+    "WHILE",
+    "PRINT",
+    "IDENTIFIER",
+    "NUMBER",
+    "ASSIGN",
+    "ROP",
+    "PLUS",
+    "MULT",
+    "LPAREN",
+    "RPAREN",
+    "LBRACE",
+    "RBRACE",
+    "SEMICOLON",
+    "COMMENT",
+    "BOOLEAN"
     };
     private String Token(int token){
         if (token >= 0 && token <  tokenNames.length) {
-            return "<" + tokenNames[token] + ">";
+            return "<" + tokenNames[token] + ", >";
         } else {
             return "UNKNOWN";
         }
@@ -779,8 +808,27 @@ class Scanner {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-          {     System.out.println("EOF"); return 1;
+            switch (zzLexicalState) {
+            case IN_SG_LINE_COMMENT: {
+              yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer)); buffer = ""; return 0;
+            }  // fall though
+            case 75: break;
+            case IN_ERROR: {
+              yybegin(YYINITIAL); String buffer2 = "INVALID CHARACTER - " + buffer; System.out.println(Token(ERROR, buffer2) + "at line " + line + " column "+ column);column = ""; line  = ""; buffer = ""; return 0;
+            }  // fall though
+            case 76: break;
+            case IN_MT_LINE_COMMENT: {
+              yybegin(YYINITIAL); String buffer2 = "INVALID CHARACTER - " + buffer ; System.out.println(Token(ERROR, buffer2) + " at line " + line + " column "+ column);column = ""; line  = ""; buffer = ""; return 0;
+            }  // fall though
+            case 77: break;
+            case PRE_FINISH_MUL_LINE_COMMENT: {
+              yybegin(YYINITIAL); String buffer2 = "INVALID CHARACTER - " + buffer;System.out.println(Token(ERROR, buffer2) + "at line " + line + " column "+ column); column = ""; line = ""; buffer = ""; return 0;
+            }  // fall though
+            case 78: break;
+            default:
+          {     return 1;
  }
+        }
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
@@ -788,157 +836,194 @@ class Scanner {
             { System.out.println("<ILL, " +yytext() + ">"); return 0;
             }
           // fall through
-          case 32: break;
+          case 38: break;
           case 2:
             { /* ignore white space. */
             }
           // fall through
-          case 33: break;
+          case 39: break;
           case 3:
             { System.out.println(Token(LPAREN)); return 0;
             }
           // fall through
-          case 34: break;
+          case 40: break;
           case 4:
             { System.out.println(Token(RPAREN)); return 0;
             }
           // fall through
-          case 35: break;
+          case 41: break;
           case 5:
             { System.out.println(Token(MULT)); return 0;
             }
           // fall through
-          case 36: break;
+          case 42: break;
           case 6:
             { System.out.println(Token(PLUS)); return 0;
             }
           // fall through
-          case 37: break;
-          case 7:
-            { System.out.println(Token(NUM, yytext())); return 0;
-            }
-          // fall through
-          case 38: break;
-          case 8:
-            { System.out.println(Token(SEMICOLON)); return 0;
-            }
-          // fall through
-          case 39: break;
-          case 9:
-            { System.out.println(Token(ASSIGN)); return 0;
-            }
-          // fall through
-          case 40: break;
-          case 10:
-            { System.out.println(Token(GT)); return 0;
-            }
-          // fall through
-          case 41: break;
-          case 11:
-            { System.out.println(Token(ID, yytext())); return 0;
-            }
-          // fall through
-          case 42: break;
-          case 12:
-            { System.out.println(Token(LBRACE)); return 0;
-            }
-          // fall through
           case 43: break;
-          case 13:
-            { System.out.println(Token(RBRACE)); return 0;
+          case 7:
+            { line = incrementString(yyline);
+    column = incrementString(yycolumn);
+    buffer += yytext();
+    yybegin(START_COMMENT);  return 0;
             }
           // fall through
           case 44: break;
-          case 14:
-            { System.out.println(Token(COMMENT, yytext())); return 0;
+          case 8:
+            { System.out.println(Token(NUM, yytext())); return 0;
             }
           // fall through
           case 45: break;
-          case 15:
-            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, yytext())); return 0;
+          case 9:
+            { System.out.println(Token(SEMICOLON)); return 0;
             }
           // fall through
           case 46: break;
-          case 16:
-            { yybegin(MULTILINE_COMMENT); return 0;
+          case 10:
+            { System.out.println(Token(ASSIGN)); return 0;
             }
           // fall through
           case 47: break;
-          case 17:
-            { yybegin(SINGLELINE_COMMENT); return 0;
+          case 11:
+            { System.out.println(Token(ROP, yytext())); return 0;
             }
           // fall through
           case 48: break;
-          case 18:
-            { System.out.println("Error: <Invalid identifier, " + yytext() + "> at line " + incrementString(yyline) + ", column " + incrementString(yycolumn)); return 0;
+          case 12:
+            { System.out.println(Token(ID, yytext())); return 0;
             }
           // fall through
           case 49: break;
-          case 19:
-            { System.out.println(Token(EQUAL)); return 0;
+          case 13:
+            { System.out.println(Token(LBRACE)); return 0;
             }
           // fall through
           case 50: break;
-          case 20:
-            { System.out.println(Token(GTE)); return 0;
+          case 14:
+            { System.out.println(Token(RBRACE)); return 0;
             }
           // fall through
           case 51: break;
-          case 21:
-            { System.out.println(Token(DO)); return 0;
+          case 15:
+            { yybegin(IN_ERROR); buffer += yytext(); return 0;
             }
           // fall through
           case 52: break;
-          case 22:
-            { System.out.println(Token(IF)); return 0;
+          case 16:
+            { System.out.println(buffer); buffer = ""; yybegin(YYINITIAL); return 0;
             }
           // fall through
           case 53: break;
-          case 23:
-            { yybegin(YYINITIAL); return 0;
+          case 17:
+            { yybegin(IN_MT_LINE_COMMENT); buffer += yytext() ;return 0;
             }
           // fall through
           case 54: break;
-          case 24:
-            { System.out.println(Token(END)); return 0;
+          case 18:
+            { yybegin(IN_SG_LINE_COMMENT); buffer = ""; return 0;
             }
           // fall through
           case 55: break;
-          case 25:
-            { System.out.println(Token(INT)); return 0;
+          case 19:
+            { buffer += yytext();return 0;
             }
           // fall through
           case 56: break;
-          case 26:
-            { System.out.println(Token(BOOL)); return 0;
+          case 20:
+            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer)); buffer = ""; return 0;
             }
           // fall through
           case 57: break;
-          case 27:
-            { System.out.println(Token(ELSE)); return 0;
+          case 21:
+            { yybegin(YYINITIAL); String buffer2 = "INVALID CHARACTER - " + buffer; System.out.println(Token(ERROR, buffer2) + "at line " + line + " column "+ column);column = ""; line  = ""; buffer = ""; return 0;
             }
           // fall through
           case 58: break;
-          case 28:
-            { System.out.println(Token(THEN)); return 0;
+          case 22:
+            { buffer += yytext(); return 0;
             }
           // fall through
           case 59: break;
-          case 29:
-            { System.out.println(Token(BEGIN)); return 0;
+          case 23:
+            { yybegin(PRE_FINISH_MUL_LINE_COMMENT); buffer += yytext(); return 0;
             }
           // fall through
           case 60: break;
-          case 30:
-            { System.out.println(Token(PRINT)); return 0;
+          case 24:
+            { if(yytext().equals("*")){
+            buffer += yytext();
+            return 0;
+        }
+        yybegin(IN_MT_LINE_COMMENT); buffer += yytext(); return 0;
             }
           // fall through
           case 61: break;
-          case 31:
-            { System.out.println(Token(WHILE)); return 0;
+          case 25:
+            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer.substring(2, buffer.length() - 1))); return 0;
             }
           // fall through
           case 62: break;
+          case 26:
+            { System.out.println("<Error, Invalid identifier - " + yytext() + "> at line " + incrementString(yyline) + ", column " + incrementString(yycolumn)); return 0;
+            }
+          // fall through
+          case 63: break;
+          case 27:
+            { System.out.println(Token(DO)); return 0;
+            }
+          // fall through
+          case 64: break;
+          case 28:
+            { System.out.println(Token(IF)); return 0;
+            }
+          // fall through
+          case 65: break;
+          case 29:
+            { System.out.println(Token(END)); return 0;
+            }
+          // fall through
+          case 66: break;
+          case 30:
+            { System.out.println(Token(INT)); return 0;
+            }
+          // fall through
+          case 67: break;
+          case 31:
+            { System.out.println(Token(BOOL)); return 0;
+            }
+          // fall through
+          case 68: break;
+          case 32:
+            { System.out.println(Token(ELSE)); return 0;
+            }
+          // fall through
+          case 69: break;
+          case 33:
+            { System.out.println(Token(THEN)); return 0;
+            }
+          // fall through
+          case 70: break;
+          case 34:
+            { System.out.println(Token(BOOLEAN, yytext())); return 0;
+            }
+          // fall through
+          case 71: break;
+          case 35:
+            { System.out.println(Token(BEGIN)); return 0;
+            }
+          // fall through
+          case 72: break;
+          case 36:
+            { System.out.println(Token(PRINT)); return 0;
+            }
+          // fall through
+          case 73: break;
+          case 37:
+            { System.out.println(Token(WHILE)); return 0;
+            }
+          // fall through
+          case 74: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

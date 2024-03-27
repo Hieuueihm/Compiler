@@ -8,29 +8,6 @@ int symLength = sizeof(SymNames) / sizeof(SymNames[0]);
 int keywordLength = sizeof(Keywords) / sizeof(Keywords[0]);
 char id[100], num[100], special[100];
 
-char *Token1(int token)
-{
-    if (token >= 0 && token < symLength)
-    {
-        char *buffer;
-
-        snprintf(buffer, sizeof(buffer), "<%s>", SymNames[token]);
-        return buffer;
-    }
-    return "UNKNOWN";
-}
-char *Token2(int token, char *value)
-{
-    if (token >= 0 && token < symLength)
-    {
-
-        char *buffer;
-
-        snprintf(buffer, sizeof(buffer), "<%s, %s>", SymNames[token], value);
-        return buffer;
-    }
-    return "UNKNOWN";
-}
 int isKeyword(char buff[])
 {
     for (int i = 0; i < keywordLength; i++)
@@ -52,7 +29,14 @@ char *toUpper(char buff[])
     }
     return buff;
 }
-
+int isBoolean(char buff[])
+{
+    if (strcmp(buff, "false") == 0 || strcmp(buff, "true") == 0)
+    {
+        return 1;
+    }
+    return 0;
+}
 int main()
 {
     FILE *f1, *f2;
@@ -62,11 +46,12 @@ int main()
     int state = 0;
     int i = 0, j = 0, k = 0;
     int line = 1, column = 1;
+    int cLine = 0, cColumn = 0;
     long position = 0;
     char prevC;
-
-    while ((c = fgetc(f1)) != EOF)
+    do
     {
+        c = fgetc(f1);
         long currentPosition = ftell(f1);
         if (c == '\n' && prevC != c)
         {
@@ -78,7 +63,6 @@ int main()
 
             column += 1;
         }
-        prevC = c;
         position = ftell(f1);
 
         switch (state)
@@ -189,7 +173,7 @@ int main()
             }
             break;
         case 4:
-            fprintf(f2, "ERROR: Invalid Identifier %s line %d column %d\n", id, line, column - strlen(id) - 1);
+            fprintf(f2, "<%s, %s - %s> line %d column %d\n", SymNames[sym.ERROR], "INVALID IDENTIFIER", id, line, column - strlen(id) - 1);
             state = 0;
             ungetc(c, f1);
             memset(id, 0, sizeof(id));
@@ -206,6 +190,10 @@ int main()
             if (isKeyword(id))
             {
                 state = 7;
+            }
+            else if (isBoolean(id))
+            {
+                state = 35;
             }
             else
             {
@@ -227,7 +215,6 @@ int main()
             state = 0;
             i = 0;
             ungetc(c, f1);
-            break;
             break;
         case 9:
             if (isdigit(c))
@@ -259,7 +246,7 @@ int main()
             }
             break;
         case 11:
-            fprintf(f2, "ERROR: Invalid Identifier %s line %d column %d\n", num, line, column - strlen(num) - 1);
+            fprintf(f2, "<%s, %s - %s> line %d column %d\n", SymNames[sym.ERROR], "INVALID IDENTIFIER", num, line, column - strlen(num) - 1);
             state = 0;
             ungetc(c, f1);
             memset(num, 0, sizeof(num));
@@ -281,18 +268,19 @@ int main()
             else
             {
                 state = 15;
-                ungetc(c, f1);
             }
+            ungetc(c, f1);
+
             break;
         case 14:
-            fprintf(f2, "<%s, >\n", SymNames[sym.GTE]);
+            fprintf(f2, "<%s, %s>\n", SymNames[sym.ROP], ">=");
             ungetc(c, f1);
             memset(special, 0, sizeof(special));
             k = 0;
             state = 0;
             break;
         case 15:
-            fprintf(f2, "<%s, >\n", SymNames[sym.GT]);
+            fprintf(f2, "<%s, %s>\n", SymNames[sym.ROP], ">");
             ungetc(c, f1);
             memset(special, 0, sizeof(special));
             k = 0;
@@ -310,7 +298,7 @@ int main()
             }
             break;
         case 17:
-            fprintf(f2, "<%s, >\n", SymNames[sym.EQUAL]);
+            fprintf(f2, "<%s, %s>\n", SymNames[sym.ROP], "==");
             ungetc(c, f1);
             state = 0;
             break;
@@ -341,13 +329,31 @@ int main()
             state = 0;
             break;
         case 23:
-            if (c == '/')
+            cLine = line;
+            cColumn = column;
+            if (c == EOF)
+            {
+                state = 33;
+                c = ' ';
+            }
+            else if (c == '/')
             {
                 state = 24;
             }
             else if (c == '*')
             {
                 state = 26;
+            }
+            else if (c != '\n')
+            {
+                special[k++] = '/';
+                special[k++] = c;
+                state = 32;
+            }
+            else if (c == '\n')
+            {
+                state = 33;
+                special[k++] = '/';
             }
             break;
 
@@ -371,7 +377,12 @@ int main()
             k = 0;
             break;
         case 26:
-            if (c != '*')
+            if (c == EOF)
+            {
+                state = 34;
+                c = ' ';
+            }
+            else if (c != '*')
             {
                 special[k++] = c;
                 state = 26;
@@ -379,15 +390,34 @@ int main()
             else if (c == '*')
             {
                 state = 27;
+                special[k++] = c;
             }
+
             break;
         case 27:
-            if (c == '/')
+            if (c == EOF)
+            {
+                state = 26;
+                c = ' ';
+            }
+            else if (c == '*')
+            {
+                special[k++] = c;
+                state = 27;
+            }
+            else if (c == '/')
             {
                 state = 28;
+                c == ' ';
+            }
+            else if (c != '/')
+            {
+                state = 26;
+                special[k++] = c;
             }
             break;
         case 28:
+            special[k - 1] = '\0';
             fprintf(f2, "<%s, %s>\n", SymNames[sym.COMMENT], special);
             state = 0;
             ungetc(c, f1);
@@ -409,6 +439,47 @@ int main()
             state = 0;
             ungetc(c, f1);
             break;
+        case 32:
+            if (c == EOF)
+            {
+                state = 33;
+                c = ' ';
+            }
+            else if (c != '\n')
+            {
+                special[k++] = c;
+                state = 32;
+            }
+            else if (c == '\n')
+            {
+                state = 33;
+            }
+            break;
+        case 33:
+            fprintf(f2, "<%s, %s - %s> line %d column %d\n", SymNames[sym.ERROR], "INVALID CHARACTER", special, cLine, cColumn - 2);
+            state = 0;
+            memset(special, 0, sizeof(special));
+            k = 0;
+            break;
+        case 34:
+            fprintf(f2, "<%s, %s - %s> line %d column %d\n", SymNames[sym.ERROR], "INVALID CHARACTER", special, cLine, cColumn - 2);
+            state = 0;
+            memset(special, 0, sizeof(special));
+            cColumn = 0;
+            cLine = 0;
+            k = 0;
+            break;
+        case 35:
+            fprintf(f2, "<%s, %s>\n", SymNames[sym.BOOLEAN], id);
+            memset(id, 0, sizeof(id));
+            state = 0;
+            i = 0;
+            ungetc(c, f1);
+            break;
         }
-    }
+        prevC = c;
+
+    } while (c != EOF);
+    fclose(f1);
+    fclose(f2);
 }
