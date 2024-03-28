@@ -104,7 +104,7 @@ errIdentifier =  {digit}+{letter}+({letter}|{digit})* | {letter}+{digit}+{letter
 %%
 
 <PRE_FINISH_MUL_LINE_COMMENT> {
-    "/" {yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer.substring(2, buffer.length() - 1))); return 0;}
+    "/" {yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer.substring(2, buffer.length() - 1))); buffer = ""; return 0;}
     <<EOF>> {yybegin(YYINITIAL); String buffer2 = "INVALID CHARACTER - " + buffer;System.out.println(Token(ERROR, buffer2) + "at line " + line + " column "+ column); column = ""; line = ""; buffer = ""; return 0;}
     "\n" {buffer += yytext(); return 0;}
     . {

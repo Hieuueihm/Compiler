@@ -3,7 +3,7 @@
 <IDENTIFIER, x>
 <SEMICOLON, >
 <INT, >
-<Error, Invalid identifier - 33a> at line 3, column 9
+<Error, INVALID IDENTIFIER - 33a> at line 3, column 9
 <ASSIGN, >
 <IDENTIFIER, x>
 <PLUS, >
@@ -42,6 +42,12 @@
 <NUMBER, 1>
 <SEMICOLON, >
 <RBRACE, >
+<COMMENT, 
+	comment1
+	>
+<INT, >
+<Error, INVALID IDENTIFIER - 321x> at line 19, column 6
+<SEMICOLON, >
 <PRINT, >
 <LPAREN, >
 <IDENTIFIER, a>
@@ -70,7 +76,7 @@
 <INT, >
 <IDENTIFIER, b>
 <ASSIGN, >
-<Error, Invalid identifier - 123x> at line 22, column 11
+<Error, INVALID IDENTIFIER - 123x> at line 26, column 11
 <SEMICOLON, >
 <IDENTIFIER, b>
 <ASSIGN, >
@@ -103,5 +109,5 @@
 <NUMBER, 1>
 <RPAREN, >
 <SEMICOLON, >
-<ERROR, INVALID CHARACTER - /casdddd>at line 27 column 3
 <END, >
+<ERROR, INVALID CHARACTER - /abc>at line 34 column 1

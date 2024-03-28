@@ -39,32 +39,34 @@ int isBoolean(char buff[])
 }
 int main()
 {
-    FILE *f1, *f2;
+    FILE *f1, *f2, *f3;
     f1 = fopen("input.upl", "r");
     f2 = fopen("output.txt", "w");
+    f3 = fopen("debug.txt", "w");
     char c;
     int state = 0;
     int i = 0, j = 0, k = 0;
     int line = 1, column = 1;
     int cLine = 0, cColumn = 0;
     long position = 0;
-    char prevC;
+    int preState = 0;
     do
     {
+
         c = fgetc(f1);
         long currentPosition = ftell(f1);
-        if (c == '\n' && prevC != c)
+        if (c == '\n' && (state == 0 || state == 26 || state == 24))
         {
             line += 1;
             column = 1;
         }
+
         else if (currentPosition != position)
         {
-
             column += 1;
         }
+        fprintf(f3, "%c--%d--%d--%d==%d\n", c, c, state, preState, line);
         position = ftell(f1);
-
         switch (state)
         {
         case 0:
@@ -477,7 +479,6 @@ int main()
             ungetc(c, f1);
             break;
         }
-        prevC = c;
 
     } while (c != EOF);
     fclose(f1);

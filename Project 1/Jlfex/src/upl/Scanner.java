@@ -960,12 +960,12 @@ class Scanner {
           // fall through
           case 61: break;
           case 25:
-            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer.substring(2, buffer.length() - 1))); return 0;
+            { yybegin(YYINITIAL); System.out.println(Token(COMMENT, buffer.substring(2, buffer.length() - 1))); buffer = ""; return 0;
             }
           // fall through
           case 62: break;
           case 26:
-            { System.out.println("<Error, Invalid identifier - " + yytext() + "> at line " + incrementString(yyline) + ", column " + incrementString(yycolumn)); return 0;
+            { System.out.println("<Error, INVALID IDENTIFIER - " + yytext() + "> at line " + incrementString(yyline) + ", column " + incrementString(yycolumn)); return 0;
             }
           // fall through
           case 63: break;

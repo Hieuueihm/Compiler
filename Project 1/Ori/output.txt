@@ -42,6 +42,12 @@
 <NUMBER, 1>
 <SEMICOLON, >
 <RBRACE, >
+<COMMENT, 
+	comment1
+	>
+<INT, >
+<ERROR, INVALID IDENTIFIER - 321x> line 19 column 6
+<SEMICOLON, >
 <PRINT, >
 <LPAREN, >
 <IDENTIFIER, a>
@@ -71,7 +77,7 @@
 <INT, >
 <IDENTIFIER, b>
 <ASSIGN, >
-<ERROR, INVALID IDENTIFIER - 123x> line 22 column 11
+<ERROR, INVALID IDENTIFIER - 123x> line 26 column 11
 <SEMICOLON, >
 <IDENTIFIER, b>
 <ASSIGN, >
@@ -104,4 +110,5 @@
 <NUMBER, 1>
 <RPAREN, >
 <SEMICOLON, >
-<ERROR, INVALID CHARACTER - /casdddd> line 27 column 3
+<END, >
+<ERROR, INVALID CHARACTER - /abc> line 34 column 1
