@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    printf("%d", 3 >= 3 == 3);
+    printf("%d", 3 * 3 >= 1);
 }
 /*
     int x;
